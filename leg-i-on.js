@@ -4,7 +4,7 @@ author:'Yo',
 desc:'Quiero ver como hacer funcionar un mod.',
 engineVersion:1,
 manifest:peroque.js,
-requires:['Default dataset*'],
+requires:[],
 sheets:{'spicySheet':'img/spicyModIconSheet.png', 'honeySheet':'http://i.imgur.com/bhNRZSv.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
 func:function()
 {
@@ -70,6 +70,7 @@ func:function()
 }
 
 });
+
 
 
 
