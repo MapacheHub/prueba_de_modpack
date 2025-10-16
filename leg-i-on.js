@@ -14,7 +14,7 @@ func:function()
     new G.Res({
 		name:'honey',
 		desc:'[honey].',
-		icon:[1,0,'honeySheet'],
+		icon:[1,0,'spicySheet'],
 		turnToByContext:{'eat':{'health':0.05,'happiness':0.03},'decay':{'spoiled food':0.5}},//this basically translates to : "when eaten, generate some health and happiness; when rotting, turn into either nothing or some spoiled food"
 		partOf:'food',
 		category:'food',
@@ -70,3 +70,4 @@ func:function()
 }
 
 });
+
