@@ -3,7 +3,7 @@ name:'Example mod',
 author:'Orteil',
 desc:'A simple example mod that adds hot peppers and hot sauce.',
 engineVersion:1,
-manifest:'modManifest.js',
+manifest:0,
 requires:['Default dataset*'],
 sheets:{'spicySheet':'img/spicyModIconSheet.png', 'honeySheet':'http://i.imgur.com/bhNRZSv.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
 func:function()
@@ -70,5 +70,6 @@ func:function()
 }
 
 });
+
 
 
