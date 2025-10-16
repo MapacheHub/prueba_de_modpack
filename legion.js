@@ -17,14 +17,14 @@ G.AddData({
 
 	func:function() {
 
-        G.contextNames['farming']='Farming'; //New production context (seperates the units from the others)
+        /*G.contextNames['farming']='Farming'; //New production context (seperates the units from the others)*/
 
         //Categorias
         
         G.resCategories['agriculture'] = {
             name: 'Agriculture',
             base: [],
-            side: ['seed', 'root']
+            side: []
         };
 
         G.resCategories['ingredients'] = {
@@ -36,29 +36,29 @@ G.AddData({
         //Recursos
 
         new G.Res({
-		name:'honeycomb',
-		desc:'[honeycomb]s are extremely sweet treats, but well guarded by wild [bees].',
-		icon:[1,0,'honeySheet'],
-		turnToByContext:{'eat':{'health':0.01,'happiness':0.03},'decay':{'spoiled food':0.5}},//this basically translates to : "when eaten, generate some health and happiness; when rotting, turn into either nothing or some spoiled food"
-		partOf:'food',
-		category:'food',
+		    name:'honeycomb',
+		    desc:'[honeycomb]s are extremely sweet treats, but well guarded by wild [bees].',
+		    icon:[1,0,'honeySheet'],
+		    turnToByContext:{'eat':{'health':0.01,'happiness':0.03},'decay':{'spoiled food':0.5}},//this basically translates to : "when eaten, generate some health and happiness; when rotting, turn into either nothing or some spoiled food"
+		    partOf:'food',
+		    category:'food',
 	    });
 
         new G.Res({
-		name:'bees',
-		desc:'[bees] are stinging insects, bee-ware!',
-		icon:[1,0,'honeySheet'],
-		partOf:'misc materials',
-		category:'misc',
+		    name:'bees',
+		    desc:'[bees] are stinging insects, bee-ware!',
+		    icon:[1,0,'honeySheet'],
+		    partOf:'misc materials',
+		    category:'misc',
 	    });
 
 	    new G.Res({
-		name:'honey',
-		desc:'Little bees will produce the sweetest honey when well taken care of.',
-		icon:[1,0,'honeySheet'],
-		turnToByContext:{'eat':{'health':0.03,'happiness':0.1},'decay':{'honey':0.95,'spoiled food':0.05}},//that last part makes hot sauce effectively have a 95% chance of simply not rotting (in effect, it decays into itself)
-		partOf:'food',
-		category:'food',
+		    name:'honey',
+		    desc:'Little bees will produce the sweetest honey when well taken care of.',
+		    icon:[1,0,'honeySheet'],
+		    turnToByContext:{'eat':{'health':0.03,'happiness':0.1},'decay':{'honey':0.95,'spoiled food':0.05}},//that last part makes hot sauce effectively have a 95% chance of simply not rotting (in effect, it decays into itself)
+		    partOf:'food',
+		    category:'food',
 	    });
 
         new G.Res({
@@ -115,23 +115,44 @@ G.AddData({
             category:'agriculture',
         });
 
-        new G.Res({
-		name:'hot pepper',
-		desc:'[hot pepper]s are loaded with capsaicin and, depending on who you ask, may produce a pleasant burn when eaten.',
-		icon:[0,0,'spicySheet'],
-		turnToByContext:{'eat':{'health':0.01,'happiness':0.03},'decay':{'spoiled food':0.5}},//this basically translates to : "when eaten, generate some health and happiness; when rotting, turn into either nothing or some spoiled food"
-		partOf:'food',
-		category:'food',
+            new G.Res({
+		    name:'hot pepper',
+		    desc:'[hot pepper]s are loaded with capsaicin and, depending on who you ask, may produce a pleasant burn when eaten.',
+		    icon:[0,0,'spicySheet'],
+		    turnToByContext:{'eat':{'health':0.01,'happiness':0.03},'decay':{'spoiled food':0.5}},//this basically translates to : "when eaten, generate some health and happiness; when rotting, turn into either nothing or some spoiled food"
+		    partOf:'food',
+		    category:'food',
 	    });
 
-	    new G.Res({
-		name:'hot sauce',
-		desc:'Made from [herb]s and the [hot pepper,Spiciest peppers], this [hot sauce] stays fresh for a while and will leave anyone panting and asking for more.',
-		icon:[1,0,'spicySheet'],
-		turnToByContext:{'eat':{'health':0.03,'happiness':0.1},'decay':{'hot sauce':0.95,'spoiled food':0.05}},//that last part makes hot sauce effectively have a 95% chance of simply not rotting (in effect, it decays into itself)
-		partOf:'food',
-		category:'Ingredients',
+	        new G.Res({
+		    name:'hot sauce',
+		    desc:'Made from [herb]s and the [hot pepper,Spiciest peppers], this [hot sauce] stays fresh for a while and will leave anyone panting and asking for more.',
+		    icon:[1,0,'spicySheet'],
+		    turnToByContext:{'eat':{'health':0.03,'happiness':0.1},'decay':{'hot sauce':0.95,'spoiled food':0.05}},//that last part makes hot sauce effectively have a 95% chance of simply not rotting (in effect, it decays into itself)
+		    partOf:'food',
+		    category:'Ingredients',
 	    });
+
+         //Seeds are used in farmlands to produce various fruits and cereals
+        new G.Res({
+            name:'seed',
+            desc:'[seed]s grow fruits and cereals.',
+            icon:[0,0,'agricultura'],
+            turnToByContext:{'eating':{'health':0.005,'happiness':-0.03}, decay:{'seed':1}}, //Seeds can't spoil
+            partOf:'food',
+            category:'agriculture',
+        });
+
+        //Roots are used in farmlands to produce vegetables
+        new G.Res({
+            name:'root',
+            desc:'[root]s are found in the wild, you can grow a lot of different vegetables.',
+            icon:[3,1,'agricultura'],
+            turnToByContext:{'eating':{'health':0.005,'happiness':-0.005}, 'decay':{'root':0.4, 'spoiled food':0.6}},
+            partOf:'food',
+            category:'agriculture',
+        });
+
 
         //Tecnologia
 
@@ -480,6 +501,29 @@ G.AddData({
 		],
 	    });
         
+        //GOODS (Recursos que encuentras por el mapa, creo)
+        
+        new G.Goods({
+            name:'wild vegetables',
+            desc:'[wild vegetables, Wild vegetables] are a good source of [root]s and of course, [vegetable]s;',
+            icon:[],
+            res:{
+                'gather':{'root':5, 'vegetable':3},
+            },
+            affectedBy:['deforestation'],
+            mult:10,
+        });
+
+        new G.Goods({
+            name:'bees',
+            desc:'[bees] are a good source of [honey] and [honeycomb];',
+            icon:[],
+            res:{
+                'gather':{'bees':1, 'honey':3, 'honeycomb':2},
+            },
+            affectedBy:['deforestation'],
+            mult:1,
+        });
 
 	}
 });
