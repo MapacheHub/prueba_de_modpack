@@ -5,7 +5,7 @@ desc:'A simple example mod that adds hot peppers and hot sauce.',
 engineVersion:1,
 manifest:'modManifest.js',
 requires:['Default dataset*'],
-sheets:{'spicySheet':'img/spicyModIconSheet.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
+sheets:{'spicySheet':'img/spicyModIconSheet.png', 'honeySheet':'http://i.imgur.com/bhNRZSv.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
 func:function()
 {
 	//The idea in this simple example mod is to add a few elements focused around hot sauce, because hot sauce is great and I use that stuff everywhere.
@@ -14,7 +14,7 @@ func:function()
     new G.Res({
 		name:'honey',
 		desc:'[honey].',
-		icon:[],
+		icon:[1,0,'honeySheet'],
 		turnToByContext:{'eat':{'health':0.05,'happiness':0.03},'decay':{'spoiled food':0.5}},//this basically translates to : "when eaten, generate some health and happiness; when rotting, turn into either nothing or some spoiled food"
 		partOf:'food',
 		category:'food',
@@ -68,4 +68,5 @@ func:function()
 	
 	//There are many other ways of adding and changing content; refer to /data.js, the default dataset, if you want to see how everything is done in the base game. Good luck!
 }
+
 });
