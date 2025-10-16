@@ -1,10 +1,10 @@
 G.AddData({
-name:'Prototipo',
-author:'Yo',
-desc:'Quiero ver como hacer funcionar un mod.',
+name:'Bee mod',
+author:'Shadowclaimer',
+desc:'A basic mod that adds Honeycomb and Bees.',
 engineVersion:1,
-manifest:peroque.js,
-requires:[],
+manifest:'beeManifest.js',
+requires:['Default dataset*'],
 sheets:{'spicySheet':'img/spicyModIconSheet.png', 'honeySheet':'http://i.imgur.com/bhNRZSv.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
 func:function()
 {
@@ -70,6 +70,7 @@ func:function()
 }
 
 });
+
 
 
 
