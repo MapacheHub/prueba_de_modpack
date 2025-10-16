@@ -39,7 +39,7 @@ G.AddData({
 		    name:'honeycomb',
 		    desc:'[honeycomb]s are extremely sweet treats, but well guarded by wild [bees].',
 		    icon:[1,0,'honeySheet'],
-		    turnToByContext:{'eat':{'health':0.01,'happiness':0.03},'decay':{'spoiled food':0.5}},//this basically translates to : "when eaten, generate some health and happiness; when rotting, turn into either nothing or some spoiled food"
+		    turnToByContext:{'eat':{'health':0.01,'happiness':-0.03},'decay':{'spoiled food':0.5}},//this basically translates to : "when eaten, generate some health and happiness; when rotting, turn into either nothing or some spoiled food"
 		    partOf:'food',
 		    category:'food',
 	    });
@@ -527,3 +527,4 @@ G.AddData({
 
 	}
 });
+
