@@ -1,7 +1,7 @@
 G.AddData({
-name:'Example mod',
-author:'Orteil',
-desc:'A simple example mod that adds hot peppers and hot sauce.',
+name:'Prototipo',
+author:'Yo',
+desc:'Quiero ver como hacer funcionar un mod.',
 engineVersion:1,
 manifest:peroque.js,
 requires:['Default dataset*'],
@@ -70,6 +70,7 @@ func:function()
 }
 
 });
+
 
 
 
